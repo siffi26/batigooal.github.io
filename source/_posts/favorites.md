@@ -82,6 +82,38 @@ title: 技术资源整理
 ##### Aggregated Channels Network for Real-Time Pedestrian Detection
 + paper: [https://arxiv.org/abs/1801.00476](https://arxiv.org/abs/1801.00476)
 
+##### Repulsion Loss: Detecting Pedestrians in a Crowd
++ paper: [https://arxiv.org/abs/1711.07752](https://arxiv.org/abs/1711.07752)
++ authors from: 同济大学和清华大学
++ code: [repulsion_loss_ssd](https://github.com/bailvwangzi/repulsion_loss_ssd)
+
+##### What Can Help Pedestrian Detection?
++ paper: [https://arxiv.org/abs/1705.02757](https://arxiv.org/abs/1705.02757)
+
+##### Is Faster R-CNN Doing Well for Pedestrian Detection?
++ paper: [https://arxiv.org/abs/1607.07032](https://arxiv.org/abs/1607.07032)
++ code: [RPN_BF](https://github.com/zhangliliang/RPN_BF/tree/RPN-pedestrian)
++ notebooks: [中文解读1](https://blog.csdn.net/cv_family_z/article/details/52397122), [中文解读2](http://www.cnblogs.com/wangxiaocvpr/p/5747095.html)
+
+##### Deep Learning Strong Parts for Pedestrian Detection
++ paper: [pdf](http://personal.ie.cuhk.edu.hk/~pluo/pdf/tianLWTiccv15.pdf)
++ notebooks: [中文解读1](http://www.cnblogs.com/ya-cpp/p/7755967.html), [中文解读2](https://blog.csdn.net/cv_family_z/article/details/50009435)
+
+##### Scaleaware fast r-cnn for pedestrian detection
++ paper: [https://arxiv.org/abs/1510.08160](https://arxiv.org/abs/1510.08160)
++ notebooks: [中文解读1](https://blog.csdn.net/cv_family_z/article/details/50037039), [中文解读2](https://blog.csdn.net/ScarecrowLiu/article/details/51570010)
+
+##### Real-Time Pedestrian Detection With Deep Network Cascades
++ paper: [pdf](https://static.googleusercontent.com/media/research.google.com/zh-CN//pubs/archive/43850.pdf)
++ code: [DeepCascade](https://github.com/qq8699444/DeepCascade)
++ notebooks: [中文解读1](https://blog.csdn.net/xiaofei0801/article/details/72829755), [中文解读2](https://blog.csdn.net/cv_family_z/article/details/50034297)
+
+##### Joint deep learning for pedestrian detection
++ paper: [pdf](https://www.ee.cuhk.edu.hk/~xgwang/papers/ouyangWiccv13.pdf)
++ code: [baidu](https://pan.baidu.com/s/1i4IxMHR#list/path=%2F)
++ project: [Joint Deep Learning](http://www.ee.cuhk.edu.hk/~wlouyang/projects/ouyangWiccv13Joint/index.html)
++ notebooks: [中文解读1](https://blog.csdn.net/delltdk/article/details/24782831)
+
 ## Vehicle Detection
 ##### SINet: A Scale-insensitive Convolutional Neural Network for Fast Vehicle Detection
 + paper: [https://arxiv.org/abs/1804.00433](https://arxiv.org/abs/1804.00433)
@@ -178,5 +210,11 @@ title: 技术资源整理
 + authors from: 
 
 ## Knowledge Distilling
-##### 
+##### Improving Knowledge Distillation with Supporting Adversarial Samples
++ paper: [https://arxiv.org/abs/1805.05532](https://arxiv.org/abs/1805.05532)
++ authors from: 
+
+##### Improving Knowledge Distillation with Supporting Adversarial Samples
++ paper: [https://arxiv.org/abs/1805.05532](https://arxiv.org/abs/1805.05532)
++ authors from: 
 
