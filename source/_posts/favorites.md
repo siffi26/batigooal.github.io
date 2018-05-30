@@ -3,7 +3,9 @@ title: 技术资源整理
 ---
 
 # Object Detection
+
 ## Papers & Codes
+
 ##### Object detection at 200 Frames Per Second
 + paper: [https://arxiv.org/abs/1805.06361v1](https://arxiv.org/abs/1805.06361v1)
 + notebooks: [中文解读1](https://blog.csdn.net/u014380165/article/details/80467007)
@@ -23,6 +25,7 @@ title: 技术资源整理
 + notebooks: [中文解读1](https://blog.csdn.net/Hibercraft/article/details/80064652), [中文解读2](https://www.jianshu.com/p/7db503d0fa2d)
 
 ## Video Object Detection
+
 ##### Towards High Performance Video Object Detection for Mobiles
 + paper: [https://arxiv.org/abs/1804.05830](https://arxiv.org/abs/1804.05830)
 + authors from: MSRA
@@ -39,6 +42,7 @@ title: 技术资源整理
 + notebooks: [中文解读](https://zhuanlan.zhihu.com/p/37068429)
 
 ## Face Detection
+
 ##### Anchor Cascade for Efficient Face Detection
 + paper: [https://arxiv.org/abs/1805.03363](https://arxiv.org/abs/1805.03363)
 + authors from: 
@@ -66,6 +70,7 @@ title: 技术资源整理
 + notebooks: [中文解读1](https://blog.csdn.net/fuwenyan/article/details/73201680), [中文解读2](https://cloud.tencent.com/developer/article/1012085)
 
 ## Person Head Detection
+
 ##### Detecting Heads using Feature Refine Net and Cascaded Multi-scale Architecture
 + paper: [https://arxiv.org/abs/1803.09256](https://arxiv.org/abs/1803.09256)
 + authors from: 
@@ -76,6 +81,7 @@ title: 技术资源整理
 + code: [cnn_head_detection](https://github.com/aosokin/cnn_head_detection)
 
 ## Pedestrian Detection
+
 ##### PCN: Part and Context Information for Pedestrian Detection with CNNs
 + paper: [https://arxiv.org/abs/1804.04483](https://arxiv.org/abs/1804.04483)
 
@@ -115,6 +121,7 @@ title: 技术资源整理
 + notebooks: [中文解读1](https://blog.csdn.net/delltdk/article/details/24782831)
 
 ## Vehicle Detection
+
 ##### SINet: A Scale-insensitive Convolutional Neural Network for Fast Vehicle Detection
 + paper: [https://arxiv.org/abs/1804.00433](https://arxiv.org/abs/1804.00433)
 
@@ -125,6 +132,7 @@ title: 技术资源整理
 + paper: [https://arxiv.org/abs/1702.00254](https://arxiv.org/abs/1702.00254)
 
 ## Skeleton Detection
+
 ##### Hi-Fi: Hierarchical Feature Integration for Skeleton Detection
 + paper: [https://arxiv.org/abs/1801.01849](https://arxiv.org/abs/1801.01849)
 
@@ -134,6 +142,7 @@ title: 技术资源整理
 + code: [SRN](https://github.com/KevinKecc/SRN)
 
 ## Projects
+
 ##### Detectron
 + intro: FAIR’s research platform for object detection research, implementing popular algorithms like Mask R-CNN and RetinaNet.
 + code: [Detectron](https://github.com/facebookresearch/Detectron)
@@ -142,11 +151,14 @@ title: 技术资源整理
 + code: [Deformable-ConvNets](https://github.com/bharatsingh430/Deformable-ConvNets)
 
 ## Tools
+
 ##### BeaverDam: Video annotation tool for deep learning training labels
 + code: [BeaverDam](https://github.com/antingshen/BeaverDam)
 
 # Tracking
+
 ## Papers
+
 ##### MV-YOLO: Motion Vector-aided Tracking by Semantic Object Detection
 + paper: [https://arxiv.org/abs/1805.00107](https://arxiv.org/abs/1805.00107)
 
@@ -159,6 +171,7 @@ title: 技术资源整理
 + notebooks: [中文解读1](https://blog.csdn.net/sinat_27318881/article/details/80112591), [中文解读2](https://zhuanlan.zhihu.com/p/36463844)
 
 ## Multi-Object Tracking(MOT)
+
 ##### Automatic Adaptation of Person Association for Multiview Tracking in Group Activities
 + paper: [https://arxiv.org/abs/1805.08717](https://arxiv.org/abs/1805.08717)
 + project page: [http://www.cs.cmu.edu/~ILIM/projects/IM/Association4Tracking/](http://www.cs.cmu.edu/~ILIM/projects/IM/Association4Tracking/)
@@ -176,6 +189,7 @@ title: 技术资源整理
 + paper: [https://arxiv.org/abs/1803.03347](https://arxiv.org/abs/1803.03347)
 
 # Face Recognition
+
 ##### Face Recognition in Low Quality Images: A Survey
 + paper: [https://arxiv.org/abs/1805.11519](https://arxiv.org/abs/1805.11519)
 
@@ -189,7 +203,9 @@ title: 技术资源整理
 + paper: [https://arxiv.org/abs/1804.10899](https://arxiv.org/abs/1804.10899)
 
 # Training
+
 ## Data Augmentation
+
 ##### Improved Mixed-Example Data Augmentation
 + paper: [https://arxiv.org/abs/1805.11272](https://arxiv.org/abs/1805.11272)
 + authors from: 
@@ -200,7 +216,9 @@ title: 技术资源整理
 + code: [mixup_pytorch](https://github.com//leehomyc/mixup_pytorch), [mixup](https://github.com//unsky/mixup)
 
 # Acceleration and Model Compression
+
 ## Pruning
+
 ##### A novel channel pruning method for deep neural network compression
 + paper: [https://arxiv.org/abs/1805.11394](https://arxiv.org/abs/1805.11394)
 + authors from: 中科大
@@ -210,6 +228,7 @@ title: 技术资源整理
 + authors from: 
 
 ## Knowledge Distilling
+
 ##### Improving Knowledge Distillation with Supporting Adversarial Samples
 + paper: [https://arxiv.org/abs/1805.05532](https://arxiv.org/abs/1805.05532)
 + authors from: 
