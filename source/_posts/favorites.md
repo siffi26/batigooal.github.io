@@ -144,8 +144,36 @@ title: 技术资源整理
 + paper: [https://arxiv.org/abs/1803.03347](https://arxiv.org/abs/1803.03347)
 
 # Face Recognition
+##### Face Recognition in Low Quality Images: A Survey
++ paper: [https://arxiv.org/abs/1805.11519](https://arxiv.org/abs/1805.11519)
+
 ##### Minimum Margin Loss for Deep Face Recognition
 + paper: [https://arxiv.org/abs/1805.06741](https://arxiv.org/abs/1805.06741)
 
 ##### Scalable Angular Discriminative Deep Metric Learning for Face Recognition
 + paper: [https://arxiv.org/abs/1804.10899](https://arxiv.org/abs/1804.10899)
+
+##### Deep Face Recognition: A Survey
++ paper: [https://arxiv.org/abs/1804.10899](https://arxiv.org/abs/1804.10899)
+
+# Training
+## Data Augmentation
+##### Improved Mixed-Example Data Augmentation
++ paper: [https://arxiv.org/abs/1805.11272](https://arxiv.org/abs/1805.11272)
++ authors from: 
+
+##### mixup: Beyond Empirical Risk Minimization
++ paper: [https://arxiv.org/abs/1710.09412](https://arxiv.org/abs/1710.09412)
++ authors from: MIT和FAIR
++ code: [mixup_pytorch](https://github.com//leehomyc/mixup_pytorch), [mixup](https://github.com//unsky/mixup)
+
+# Acceleration and Model Compression
+## Pruning
+##### A novel channel pruning method for deep neural network compression
++ paper: [https://arxiv.org/abs/1805.11394](https://arxiv.org/abs/1805.11394)
++ authors from: 中科大
+
+##### AutoPruner: An End-to-End Trainable Filter Pruning Method for Efficient Deep Model Inference
++ paper: [https://arxiv.org/abs/1805.08941](https://arxiv.org/abs/1805.08941)
++ authors from: 
+
