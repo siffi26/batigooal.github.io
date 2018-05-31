@@ -2,52 +2,52 @@
 title: 技术资源整理
 ---
 
-# Object Detection #
+# Object Detection
 
-## Papers & Codes ##
+## Papers & Codes
 
-##### Object detection at 200 Frames Per Second #####
+##### Object detection at 200 Frames Per Second
 + paper: [https://arxiv.org/abs/1805.06361v1](https://arxiv.org/abs/1805.06361v1)
 + notebooks: [中文解读1](https://blog.csdn.net/u014380165/article/details/80467007)
 
-##### Quantization Mimic: Towards Very Tiny CNN for Object Detection #####
+##### Quantization Mimic: Towards Very Tiny CNN for Object Detection
 + paper: [https://arxiv.org/abs/1805.02152](https://arxiv.org/abs/1805.02152)
 + authors from: 商汤[Junjie Yan](http://www.cbsr.ia.ac.cn/users/jjyan/main.htm)
 
-##### Pelee: A Real-Time Object Detection System on Mobile Devices #####
+##### Pelee: A Real-Time Object Detection System on Mobile Devices
 + paper: [https://arxiv.org/abs/1804.06882](https://arxiv.org/abs/1804.06882v1)
 + code: [https://github.com/Robert-JunWang/Pelee](https://github.com/Robert-JunWang/Pelee)
 + notebooks: [中文解读1](https://blog.csdn.net/fengzhongluoleidehua/article/details/80297168)
 
-##### DetNet: A Backbone network for Object Detection #####
+##### DetNet: A Backbone network for Object Detection
 + paper: [https://arxiv.org/abs/1804.06215](https://arxiv.org/abs/1804.06215)
 + authors from: 清华和旷视[Jan Sun](http://www.jiansun.org/)
 + notebooks: [中文解读1](https://blog.csdn.net/Hibercraft/article/details/80064652), [中文解读2](https://www.jianshu.com/p/7db503d0fa2d)
 
-## Video Object Detection ##
+## Video Object Detection
 
-##### Towards High Performance Video Object Detection for Mobiles #####
+##### Towards High Performance Video Object Detection for Mobiles
 + paper: [https://arxiv.org/abs/1804.05830](https://arxiv.org/abs/1804.05830)
 + authors from: MSRA
 + notebooks: 
 
-##### Impression Network for Video Object Detection #####
+##### Impression Network for Video Object Detection
 + paper: [https://arxiv.org/abs/1712.05896](https://arxiv.org/abs/1712.05896)
 + authors from: 商汤[Junjie Yan](http://www.cbsr.ia.ac.cn/users/jjyan/main.htm)
 + notebooks: [中文解读](http://www.zhuanzhi.ai/knowledge/28184673e3973808dbe07e6bf5faf330)
 
-##### Towards High Performance Video Object Detection #####
+##### Towards High Performance Video Object Detection
 + paper: [https://arxiv.org/abs/1711.11577](https://arxiv.org/abs/1711.11577)
 + authors from: MSRA
 + notebooks: [中文解读](https://zhuanlan.zhihu.com/p/37068429)
 
-## Face Detection ##
+## Face Detection
 
-##### Anchor Cascade for Efficient Face Detection #####
+##### Anchor Cascade for Efficient Face Detection
 + paper: [https://arxiv.org/abs/1805.03363](https://arxiv.org/abs/1805.03363)
 + authors from: 
 
-##### Survey of Face Detection on Low-quality Images #####
+##### Survey of Face Detection on Low-quality Images
 + paper: [https://arxiv.org/abs/1804.07362](https://arxiv.org/abs/1804.07362)
 + authors from: 
 
