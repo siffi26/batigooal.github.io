@@ -4,9 +4,9 @@ menu:
   Archives: archives  # 归档
   Categories: categories  # 分类
   Tags: tags  # 标签
-  Repository: repository  # github repositories
-  Books: books  # 豆瓣书单
-  Links: links  # 友链
+  # Repository: repository  # github repositories
+  # Books: books  # 豆瓣书单
+  # Links: links  # 友链
   About: about  # 关于
 
 # Enable/Disable menu icons
@@ -16,9 +16,9 @@ menu_icons:
   archives: icon-archives-fill
   categories: icon-folder
   tags: icon-tags
-  repository: icon-project
-  books: icon-book-fill
-  links: icon-friendship
+  # repository: icon-project
+  # books: icon-book-fill
+  # links: icon-friendship
   about: icon-cup-fill
 
 # rss
@@ -30,10 +30,10 @@ site:
     enabled: true
     width: 40
     height: 40
-    url: ../images/logo.png
+    url: ../images/arg.png
   title: Hexo # 页面title
   favicon: /favicon.png
-  board: <p>欢迎交流与分享经验!</p> # 站点公告
+  board: <p>Vamos Argentina!!!</p> # 站点公告
   copyright: false # 底部版权信息
 
 # config
@@ -59,7 +59,7 @@ widgets:
   - board  
   - category
   - tag
-  - tagcloud
+#   - tagcloud
   - archive
   - recent_posts
 
@@ -81,7 +81,7 @@ search:
 
 # Donate
 donate:
-  enable: true
+  enable: false
   # 微信打赏
   wechatpay:
     qrcode: images/donate/wechatpayimg.png
@@ -94,13 +94,13 @@ donate:
 # Share
 # weibo,qq,qzone,wechat,tencent,douban,diandian,facebook,twitter,google,linkedin
 share:
-  enable: true  # 是否启用分享
+  enable: false  # 是否启用分享
   sites: weibo,qq,wechat,facebook,twitter  # PC端显示的分享图标
   mobile_sites: weibo,qq,qzone  # 移动端显示的分享图标
 
 # Github
 github: 
-  username: cofess  # github username
+  username: batigooal  # github username
 
 # Comment
 # Gitment
