@@ -1,5 +1,9 @@
 ---
 title: 技术资源整理
+date: 2018-06-01 11:16:15
+categories: 资料汇总
+tags:
+     - resources
 ---
 
 # Object Detection

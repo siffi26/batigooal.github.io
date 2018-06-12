@@ -1,7 +1,9 @@
 ---
 title: 《学习用于视觉跟踪的卷积操作》阅读笔记
 date: 2018-06-01 11:16:15
+categories: 读书笔记
 tags:
+     - tracking
 ---
 
 跟踪算法领域大神人物Martin Danelljan在5月份放出一本视觉跟踪的科普书籍《Learning Convolution Operators for Visual Tracking》，打算认真的拜读一下，特此做下翻译以及笔记，以供查阅。

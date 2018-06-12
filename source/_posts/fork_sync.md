@@ -1,5 +1,9 @@
 ---
 title: Github上fork项目后与源项目同步
+date: 2018-06-01 11:16:15
+categories: 工作效率
+tags:
+     - tools
 ---
 查看当前的远程仓库地址：
 ```bash
