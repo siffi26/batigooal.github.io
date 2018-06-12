@@ -1,5 +1,5 @@
 ---
-title: tracking_book_read.md
+title: 《学习用于视觉跟踪的卷积操作》阅读笔记
 date: 2018-06-01 11:16:15
 tags:
 ---
