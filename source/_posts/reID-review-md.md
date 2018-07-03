@@ -237,117 +237,137 @@ tags:
 #### 19. Multi-Level Factorisation Net for Person Re-Identification
 摘要：行人再识别的关键在于高语义和低语义水平上对行人外观的判别和视图不变因素进行建模。本文提出多层次因子分析网络（MLFN），将行人的视觉外观分解为多个语义级别的潜在判别因素而无需人工标注。MLFN由多个堆叠块组成，每个块包含多个因子模块以模拟特定级别的潜在因子，以及因子选择模块，其动态地选择因子模块以解释每个输入图像的内容。因子选择模块的输出还提供紧凑的潜在因子描述符，其与传统深度学习的特征互补。MLFN在三个Re-ID数据集上实现了最先进的结果，并在一般对象分类CIFAR-100数据集上获得了令人信服的结果。
 
-本文贡献：
-
 网络结构：
 
-代码：[]()
+![](cut-imgs/2018-07-04-00-29-27.png)
+
+![](cut-imgs/2018-07-04-00-30-41.png)
 
 #### 20. Multi-shot Pedestrian Re-identification via Sequential Decision Making
-摘要：
-
 本文贡献：
++ 首次将增强学习引入到multi-shot Re-ID问题中，训练一个agent根据现有的信息对两个序列做停止或者推迟的决策，因此可以根据奖惩来平衡速度和准确度；
++ 在三个数据集上验证了有效性和效率。仅使用3%～6%的样本就可以达到SOT水平，无需借助其他后处理或者额外的度量学习方法；
++ 凭经验证明了Q-function可以隐含地表示样本的困难程度，这种理想的属性使我们方法的结果更容易解释。
 
 网络结构：
 
-代码：[]()
+![](cut-imgs/2018-07-04-00-27-50.png)
+
+代码：[rl-multishot-reid](https://github.com/TuSimple/rl-multishot-reid)
+
+效果：主要的效果在于可以用很少的样本量达到SOT的性能。
 
 #### 21. Person Re-identification with Cascaded Pairwise Convolutions
-摘要：
-
-本文贡献：
+摘要：提出了一个叫做BraidNet的新型深层体系结构用于行人重识别。BraidNet有一个专门设计的WConv层，级联的WConv结构学习提取两个图像的比较特征，这两个图像对于不对齐和不同相机之间的色差是非常鲁棒的。此外，通道缩放层旨在优化每个输入通道的缩放因子，这有助于缓解训练阶段的零梯度问题。为了解决正负样本不均衡问题，提出了一种采样率学习策略，以自适应地更新每个batch中正负样本之间的比例。
 
 网络结构：
 
-代码：[]()
+![](cut-imgs/2018-07-04-00-45-09.png)
+
+![](cut-imgs/2018-07-04-00-45-53.png)
 
 #### 22. Resource Aware Person Re-identification across Multiple Resolutions
-摘要：
-
-本文贡献：
+摘要：对于简单的样本和困难的样本不应该一刀切。提出了一个简单架构的行人再识别模型，基础网络很简单，做了两处修改：
++ 跨多个层的嵌入组合成单个嵌入
++ 每个阶段的嵌入都用监督训练来完成任务
 
 网络结构：
 
-代码：[]()
+![](cut-imgs/2018-07-04-01-13-09.png)
 
 #### 23. Unsupervised Person Image Synthesis in Arbitrary Poses
-摘要：
-
-本文贡献：
+摘要：提出一种使用生成对抗学习来合成任意姿势行人的真实感图像的新方法。给定行人的输入图像和2D骨架表示的新姿势，模型在新姿势下呈现同一个人的图像，合成输入图像中可见部分的新颖视图并且使看不到的部分产生幻觉。本文将问题分为两个主要子任务来解决这个挑战性的问题。首先考虑一个姿态条件双向发生器，将最初渲染的图像映射回原始姿势，因此可以直接与输入图像相比，无需求助于任何训练样本。其次，设计了一种新颖的损失函数，其中包含内容和风格，旨在产生高感知质量的图像。
 
 网络结构：
 
-代码：[]()
+![](cut-imgs/2018-07-04-01-21-34.png)
+
+效果：主要和无监督方法或者其他生成样本方法比较。
 
 #### 24. Group Consistent Similarity Learning via Deep CRFs for Person Re-Identification
-摘要：
-
 本文贡献：
++ 将CRF模型和DNN结合起来，以学习更一致的多尺度相似性度量。图像组内的各种图像间依赖性由统一的图形模型建模；
++ 对模型采用近似推理方案，通过神经网络模块实现推理过程，允许端到端的训练；
++ 消融实验验证了在CRF中使用群体相似性进行训练的有效性，有利于嵌入特征，局部相似性和多尺度相似性组合。
 
 网络结构：
 
-代码：[]()
+![](cut-imgs/2018-07-04-01-34-34.png)
+
+![](cut-imgs/2018-07-04-01-35-29.png)
 
 #### 25. Video Person Re-identification with Competitive Snippet-similarity Aggregation and Co-attentive Snippet Embedding
 摘要：
 
 本文贡献：
++ 提出了一种基于短片段表示的竞争相似性聚合方案，减少了片段相似性估计的人内外观变化，并聚集了多种可靠的片段相似性，以估计两个序列之间的相似性；
++ 提出了一种新的时间共同嵌入用于片段相似性估计，利用两个比较图像的全局查询特征，不仅减轻了噪声帧的影响，而且还引导了更相关的特征嵌入用于相似性估计；
++ 消融实验验证了所提出的片段竞争相似性聚合和时间共同嵌入的有效性。
 
 网络结构：
 
-代码：[]()
+![](cut-imgs/2018-07-04-01-45-29.png)
+
+![](cut-imgs/2018-07-04-01-46-06.png)
+
+效果：主要解决视频中行人再识别的问题。
 
 #### 26. Attention-aware Compositional Network for Person Re-Identification
-摘要：
-
 本文贡献：
++ 提出一种名叫“Attention-Aware Compositional Network（AACN）”的统一框架来处理Re-ID的错位和遮挡问题；
++ 引入姿势引导部分注意力以估计更精细的部分注意力以排除相邻噪声，在统一的框架中同时捕获刚性和非刚性身体部位；
++ 引入可见性分数来测量每个身体部位的遮挡程度，它为注意力意识特征组合提供特定于图像的部分重要性分数。
 
 网络结构：
 
-代码：[]()
+![](cut-imgs/2018-07-04-01-53-45.png)
+
+![](cut-imgs/2018-07-04-01-57-45.png)
 
 #### 27. Deep Group-shuffling Random Walk for Person Re-identification
-摘要：
-
 本文贡献：
++ 提出了一种新的group-shuffling random walk层，将P2G和G2G的亲和力进行整合从而获得更准确的检索，所提出的GSRW层可以在DNN内进行端到端的训练，并且导致更具有辨别性的特征表示；
++ 建议将特征维度划分为若干组，并将监督信号分别应用于每个组，这种简单的策略可以强制每个特征维度有助于捕获用于亲和力估计的判别信息；
++ 基于群特征子向量提出了一种group-shuffling操作，将多对初始P2G和G2G亲和力结合起来进行训练，该操作隐含地对P2G和G2G亲和力应用丰富的监督信号，并且更好地规范了特征学习过程。
 
 网络结构：
 
-代码：[]()
+![](cut-imgs/2018-07-04-02-09-34.png)
+
+![](cut-imgs/2018-07-04-02-10-09.png)
 
 #### 28. Easy Identification from Better Constraints: Multi-Shot Person Re-Identification from Reference Constraints
-摘要：
-
-本文贡献：
-
-网络结构：
-
-代码：[]()
+摘要：主要聚焦在Multi-shot person re-identification任务上。
 
 #### 29. Eliminating Background-bias for Robust Person Re-identification
 摘要：
 
 本文贡献：
++ 通过深度学习的方法来研究背景区域对行人再识别性能的影响。
++ 引入了一种具有人工解析模块和随机背景数据增强的新型深度神经网络，用于解决行人再识别任务，该任务对背景变化具有鲁棒性，并且能够专注于信息量大的前景区域以达到SOT性能。
 
 网络结构：
 
-代码：[]()
+![](cut-imgs/2018-07-04-02-35-58.png)
+
+效果：实验并没有给出SOT的对比
 
 #### 30. End-to-End Deep Kronecker-Product Matching for Person Re-identification
-摘要：
-
 本文贡献：
++ 提出了Kronecker Product Matching模块，能够在两个图像之间生成匹配的置信度图，与提出的连续变形方案一起，行人图像的特征图可以通过DNN随机变形以进行端到端的相似性学习；
++ 利用类似沙漏的网络结构为行人外观进行编码，生成多尺度特征图，特征学习和变形在多个尺度上进行，获得更鲁棒的行人特征表示；
++ 研究了一系列可能对最终性能产生重大影响的重要因素，包括损失函数、宽高比、特定网络设计，为将来的设计提供了指导。
 
 网络结构：
 
-代码：[]()
+![](cut-imgs/2018-07-04-02-45-33.png)
+
+![](cut-imgs/2018-07-04-02-46-05.png)
+
+![](cut-imgs/2018-07-04-02-46-40.png)
 
 #### 31. Deep Mutual Learning
-摘要：
+摘要：提出一种在没有预训练网络的情况下进行知识迁移的互学习（Deep Mutual Learning，DML）方法。在CIFAR-100和Market-1501上取得了好的效果。其实是介绍的知识蒸馏技术或者迁移学习技术。
 
-本文贡献：
-
-网络结构：
-
-代码：[]()
+代码：[DML](https://github.com/YingZhangDUT/Deep-Mutual-Learning)
 
