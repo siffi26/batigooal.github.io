@@ -86,9 +86,15 @@ $$\mathcal{L}^2=\alpha_f \mathcal{L}_{fg}^2+\beta_f \mathcal{L}_{bg}^2+\mathcal{
 
 其中，
 
-$$\mathcal{L}_{fg}^2=||F_t\bigodot M_t-F_t^*\bigodot M_t||_1=\frac{1}{\sum_{M_t^{i,j}=0}(1-M_t^{i,j})}{\sum_{i,j}|({F_t}^{i,j}-{F_t^*}^{i,j})\times{(1-M_t^{i,j})}|}$$
+$$\mathcal{L}_{fg}^2=||F_t\bigodot M_t-F_t^*\bigodot M_t||_1=\frac{1}{\sum_{M_t^{i,j}=1}{M_t^{i,j}}}\sum_{i,j}|(F_t^{i,j}-{F_t^*}^{i,j})\times{M_t^{i,j}}|$$
 
-$$$$
+$$\mathcal{L}_{bg}^2=||F_t\bigodot{1-M_t}-F_t^*\bigodot{1-M_t}||_1=\frac{1}{\sum_{M_t^{i,j}=0}(1-M_t^{i,j})}{\sum_{i,j}|({F_t}^{i,j}-{F_t^*}^{i,j})\times{(1-M_t^{i,j})}|}$$
+
+$$\mathcal{L}_{gen}^2=-\log(D^{fg}([F_t^*,P_t^*]))$$
+
+$$\mathcal{L}_D^2=-\log(D^{fg}([F_t,P_t^*]))-\log(1-D^{fg}([F_t^*,P_t^*]))$$
+
+stage3(Background Transformer Network)
 
 $$$$
 
