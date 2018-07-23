@@ -76,11 +76,19 @@ $$L_{total}=\lambda L_{tc}+L_{softmax}$$
 
 ![](cut-imgs/2018-07-12-17-22-17.png)
 
-stage1(Pose Transformer Network)使用的Loss Function是L2 regression loss：
+stage1(Pose Transformer Network)网络结构如下：
+
+![](cut-imgs/2018-07-23-15-38-12.png)
+
+使用的Loss Function是L2 regression loss：
 
 $$\mathcal{L}^1=\sum_{i}^{N}{||{P_t^*}^i-P_t^i||_2^2}$$
 
-stage2(Foreground Transformer Network)使用的Loss Function：
+stage2(Foreground Transformer Network)网络结构如下：
+
+![](cut-imgs/2018-07-23-15-36-30.png)
+
+使用的Loss Function：
 
 $$\mathcal{L}^2=\alpha_f \mathcal{L}_{fg}^2+\beta_f \mathcal{L}_{bg}^2+\mathcal{L}_{gen}^2$$
 
@@ -94,7 +102,20 @@ $$\mathcal{L}_{gen}^2=-\log(D^{fg}([F_t^*,P_t^*]))$$
 
 $$\mathcal{L}_D^2=-\log(D^{fg}([F_t,P_t^*]))-\log(1-D^{fg}([F_t^*,P_t^*]))$$
 
-stage3(Background Transformer Network)
+stage3(Background Transformer Network)网络结构如下：
 
-$$$$
+![](cut-imgs/2018-07-23-15-35-25.png)
 
+使用的Loss Function：
+
+$$\mathcal{L}^3=\alpha_b\mathcal{L}_{fg}^3+\beta_b\mathcal{L}_{bg}^3+\mathcal{L}_{gen_{fg}}^3+\mathcal{L}_{gen}^3$$
+
+其中，
+
+$$\mathcal{L}_{gen_{fg}}^3=-\log(D_{fg}^{bg}([I_t^* \bigodot M_t,P_t^*]))$$
+
+$$\mathcal{L}_{gen}^3=-\log(D^{bg}(I_t^*))$$
+
+$$\mathcal{L}_{D_{fg}}^3=-\log(D_{fg}^{bg}([I_t \bigodot M_t,P_t^*]))-\log(1-D_{fg}^{bg}([I_t^* \bigodot M_t,P_t^*]))$$
+
+$$\mathcal{L}_{D}^3=-\log(D^{bg}(I_t))-\log(1-D^{bg}(I_t^*))$$
