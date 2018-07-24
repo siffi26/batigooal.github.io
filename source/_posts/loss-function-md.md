@@ -5,11 +5,26 @@ tags:
 ---
 
 # Loss Function
-## 
+## 常见任务中的Loss Function
+### 分类任务
 
-## 
+### 目标检测任务
 
-## CVPR2018中的Loss Function实例
+### 实例分割任务
+
+### 关键点检测任务
+
+### 
+
+## 实用Loss Function的代码解析（Caffe&Pytorch）
+### YOLO-V2中的Loss Function
+
+### RefineDET中的Loss Function
+
+### 人脸识别模型中常用的Loss Function
+
+
+## CVPR2018中的Loss Function的设计
 ### CosFace: Large Margin Cosine Loss for Deep Face Recognition
 增强边缘余弦损失函数（LMCL）的定义：
 $$L_{lmc}=\frac{1}{N}\sum_i{-\log{\frac{e^{s(cos(\theta_{y_i},i)-m)}}{e^{s(cos(\theta_{y_i},i)-m)}+\sum_{j\neq{y_i}}{e^{s*cos(\theta_j,i)}}}}}$$
