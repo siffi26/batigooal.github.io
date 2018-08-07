@@ -5,7 +5,7 @@ tags:
 ---
 
 # Loss Function
-## 常见任务中的Loss Function
+## 常见的Loss Function
 ### 分类任务
 
 ### 目标检测任务
@@ -14,15 +14,19 @@ tags:
 
 ### 关键点检测任务
 
-### 
-
-## 实用Loss Function的代码解析（Caffe&Pytorch）
+## 实用Loss Function的设计
 ### YOLO-V2中的Loss Function
 
 ### RefineDET中的Loss Function
 
-### 人脸识别模型中常用的Loss Function
+### 人脸识别算法中常用的Loss Function
+#### DeepID系列论文的Loss Functin
+DeepID中使用softmax+cross entropy训练10000类:
+$$S_j=\frac{e^{a_j}}{\sum^T_{k=1}{e^{a_k}}}$$
+$$L=-\sum^{T}_{j=1}{y_j{log{S_j}}}$$
 
+DeepID2中使用identification loss+face verification signal，其中，identification loss就是使用cross entropy loss，而face verification signal的定义如下：
+$$Verif(f_i,f_j,y_{ij},\theta_{ve})=\begin{cases} \frac{1}{2}||f_i-f_j||^2_2 & \text {if $y_{ij}=1$} \\ \frac{1}{2}max(0,m-||f_i-f_j||_2)^2 & \text {if $y_{ij}=-1$} \end{cases}, $$
 
 ## CVPR2018中的Loss Function的设计
 ### CosFace: Large Margin Cosine Loss for Deep Face Recognition
@@ -33,8 +37,6 @@ $$L_{lmc}=\frac{1}{N}\sum_i{-\log{\frac{e^{s(cos(\theta_{y_i},i)-m)}}{e^{s(cos(\
 $$W=\frac{W^*}{||W^*||},$$
 $$x=\frac{x^*}{||x^*||},$$
 $$cos(\theta_j,i)=W_j^Tx_i$$
-
-
 
 ### Wing Loss for Robust Facial Landmark Localisation with Convolutional Neural Networks
 文章创新点：
