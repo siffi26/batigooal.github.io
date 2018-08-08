@@ -20,13 +20,14 @@ tags:
 ### RefineDET中的Loss Function
 
 ### 人脸识别算法中常用的Loss Function
-#### DeepID系列论文的Loss Functin
 DeepID中使用softmax+cross entropy训练10000类:
 $$S_j=\frac{e^{a_j}}{\sum^T_{k=1}{e^{a_k}}}$$
 $$L=-\sum^{T}_{j=1}{y_j{log{S_j}}}$$
 
-DeepID2中使用identification loss+face verification signal，其中，identification loss就是使用cross entropy loss，而face verification signal的定义如下：
+DeepID2、2+、3中使用的都是identification loss+face verification signal，其中，identification loss就是使用cross entropy loss，而face verification signal使用的是contrast loss，其定义如下：
 $$Verif(f_i,f_j,y_{ij},\theta_{ve})=\begin{cases} \frac{1}{2}||f_i-f_j||^2_2 & \text {if $y_{ij}=1$} \\ \frac{1}{2}max(0,m-||f_i-f_j||_2)^2 & \text {if $y_{ij}=-1$} \end{cases}, $$
+
+
 
 ## CVPR2018中的Loss Function的设计
 ### CosFace: Large Margin Cosine Loss for Deep Face Recognition
