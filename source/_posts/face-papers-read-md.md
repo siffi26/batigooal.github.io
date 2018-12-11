@@ -101,5 +101,23 @@ Learning (2018.1)*
 #### **PRN**: *Pairwise Relational Networks for Face Recognition (ECCV 2018)*
 + paper: [PRN](http://openaccess.thecvf.com/content_ECCV_2018/papers/Kang_Pairwise_Relational_Networks_ECCV_2018_paper.pdf)
 
+
+---
 #### **MobiFace**: *A Lightweight Deep Learning Face Recognition on Mobile Devices (2018.11)*
 + paper: [MobiFace](https://arxiv.org/pdf/1811.11080)
+
+本文提出一种新的DNN叫做MobiFace，简单但是高效，适合在移动设备用于人脸识别。LFW上可以达到99.7%，Megaface上可以达到91.3%。文章引入一种新颖的**lightweight**并且**highperformance**的DNN用于移动设备上的人脸识别，文章的贡献包括：
+1. 对成功的MobileNet框架进行了改进提升，更轻量化权重并且更好的网络MobiNet模型适合部署在移动设备上；
+2. 所提出的MobiNet适合用于人脸识别，是可以端到端优化的深度学习框架；
+3. 在LFW和Megaface两个数据集上，与其他基于移动端的网络和大规模深度网络在人脸识别任务上进行了对比。
+
+与MobiNet的网络比较接近的两种轻量级设计包括：
+1. 紧凑型模块的设计。**layers can abate the number of weights, help use less memory, and mitigate heavy computation cost for inference stage.** MobileNet中提出使用depthwise separable convolution替代标准的convolution，可以减少大量参数。MobileNet的参数数量是4.2M，加乘运算数量569M，在ImageNet的分类数据集上达到70.6%的准确率；对比来看，VGG-16参数数量138M，加乘运算数量15300M，准确率仅71.5%。MobileNet-V2版本提出inverted residuals和linear bottlenecks，参数数量3.4M，加乘运算数量300M，准确率72%。另一方面，depthwise convolution在Caffe，Pytorch，Tensorflow等框架上并不能高效的使用CPU运算。MobileFaceNet使用global depthwise convolution层替换global averagingpooling层，对不同位置的像素进行不同的加权。
+
+2. 网络剪枝。由于每个已修剪的连接，需要将索引列表存储在内存中，从而导致训练和推理的速度非常慢。
+
+MobiNet的介绍：
+**网络设计策略**
+1. **Bottleneck Residual block with the expansion layers**：
+
+2. **Fast Downsampling**：紧凑的网络需要让输入图片到输出图片的信息传递最大化，从而避免特征图大空间维度上的高计算成本。
