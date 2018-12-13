@@ -5,8 +5,23 @@ tags:
 ---
 本篇博客记录一些人脸识别领域的经典论文以及最新论文的阅读笔记。
 
+---
+LFW、YTF、MegaFace测试基准
+
+Models | LFW | YTF | MegaFace | Model Size | Training Images
+---------|----------|----------|----------|----------|----------
+MobiFace | 99.7% | / | 91.3% | 9.3MB | 3.8M
+MobileFaceNet | 99.48% | / | 90.71% | 4MB | 3.8M
+Google-FaceNet | 99.63% | / | 86.47% | 30MB | 200M
+MobileNet_V1 | 99.5% | / | 92.65% | 112MB | 3.8M
+CosFace | 99.73% | / | / | / | 5M
+LightCNN | 99.33% | / | / | 50MB | 4M
+
+---
+
+
 #### **DeepFace**: *Closing the Gap to Human-Level Performance in Face Verification (CVPR 2014, Facebook AI)*
-+paper: [DeepFace](https://www.cs.toronto.edu/~ranzato/publications/taigman_cvpr14.pdf)
++ paper: [DeepFace](https://www.cs.toronto.edu/~ranzato/publications/taigman_cvpr14.pdf)
 
 #### **DeepID**: *Deep Learning Face Representation from Predicting 10,000 Classes (CVPR 2014)*
 + paper: [DeepID](http://mmlab.ie.cuhk.edu.hk/pdf/YiSun_CVPR14.pdf)
@@ -98,8 +113,35 @@ Learning (2018.1)*
 #### *Data-specific Adaptive Threshold for Face Recognition and Authentication (2018.11)*
 + paper: [Adaptive Threshold](https://arxiv.org/pdf/1810.11160.pdf)
 
+---
 #### **PRN**: *Pairwise Relational Networks for Face Recognition (ECCV 2018)*
 + paper: [PRN](http://openaccess.thecvf.com/content_ECCV_2018/papers/Kang_Pairwise_Relational_Networks_ECCV_2018_paper.pdf)
+
+本文提出一种新颖的人脸识别方法，叫做pairwise relational network(PRN)，它可以围绕特征图的关键点获取局部外观patches，在成对的局部外观patches之间捕获pairwise relation。PRN可以捕获到不同ID之间独特的判别性的成对关系。文章添加一个人脸ID状态特征，这是通过在特征图上的序列化局部外观patches的方式，从LSTM单元网络中获取。为了进一步提升人脸识别的准确性，文章将全局外观表达和成对关系特征相融合。
+
+文章的主要贡献包括：
++ 提出一种新的使用pairwise relational network(PRN)的人脸识别方法，PRN在特征图的局部外观patches上捕获到独一无二的具有判别性的pairwise relational，用于在不同ID中区分人脸图片
++ 所提出的PRN无论是对1:1还是1:N的准确率都有所增加
++ 在LFW，YTF，IJB-A，IJB-B几个公共数据集上大部分都是SOT的水平
+
+文章所提出的方法在细节上包括：用于global appearance representation的骨干网络、人脸对齐、pairwise relational network、带有face identity states的pairwise relational network，损失函数五个部分：
+
+**基本的CNN骨干网络**：使用一些3-layer的Residual Bottleneck Blocks组成骨干网络。输入140×140的人脸图片，网络结构如下：
+
+Layer name | Output size | 101-layer
+---------|----------|----------
+ conv1 | 140×140 | 5×5, 64
+ conv2_x | 70×70 | 3×3 max pool, /2
+ conv2_x | 35×35 | $\begin{bmatrix} 1×1, 64 \\ 3×3, 64 \\ 1×1, 256 \end{bmatrix}$×3
+ conv3_x | 35×35 | $\begin{bmatrix} 1×1, 128 \\ 3×3, 128 \\ 1×1, 512 \end{bmatrix}$×4
+ conv4_x | 18×18 | $\begin{bmatrix} 1×1, 256 \\ 3×3, 256 \\ 1×1, 1024 \end{bmatrix}$×23
+ conv5_x | 9×9 | $\begin{bmatrix} 1×1, 512 \\ 3×3, 512 \\ 1×1, 2048 \end{bmatrix}$×3
+ - | 1×1 | global average pooling, 8630-d fc, softmax
+
+global appearance representation（全局外观表达）:GAP全局平均池化输出的2048维向量
+local appearance representation（局部外观表达）:在conv5_3层的特征图9×9×2048上根据人脸关键点进行ROI投影
+
+**人脸对齐**：
 
 
 ---
@@ -120,4 +162,36 @@ MobiNet的介绍：
 **网络设计策略**
 1. **Bottleneck Residual block with the expansion layers**：
 
-2. **Fast Downsampling**：紧凑的网络需要让输入图片到输出图片的信息传递最大化，从而避免特征图大空间维度上的高计算成本。
+2. **Fast Downsampling**：紧凑的网络需要让输入图片到输出图片的信息传递最大化，从而避免特征图大空间维度上的高计算成本。文章认为大规模的深度网络通常都是采用非常缓慢的downsampling，这样做的目的是为了保留住更多的细节信息。但是资源受限的情况下，缓慢的downsampling会带来两个问题，一个是保留了不重要的特征，另一个是耗时。因此，文章提出采用快速downsampling策略。 
+
+**MobiFace**
+用于人脸识别的MobiFace，给定输入人脸图片112×112×3，网络结构如下图：
+
+Input | Operator
+---------|----------
+ 112×112×3 | 3×3 Conv, /2, 64
+ 56×56×64 | 3×3 DWconv, 64
+ 56×56×64 | Block 1×$\begin{cases} 1×1 Conv, 128\\ 3×3 DWconv, /2, 128\\ 1×1 Conv, Linear, 64 \end{cases}$
+ 28×28×64 | RBlock 2×$\begin{cases} 1×1 Conv, 128\\ 3×3 DWconv, 128\\ 1×1 Conv, Linear, 64 \end{cases}$
+ 28×28×64 | Block 1×$\begin{cases} 1×1 Conv, 256\\ 3×3 DWconv, /2, 256\\ 1×1 Conv, Linear, 128 \end{cases}$
+ 14×14×128 | RBlock 3×$\begin{cases} 1×1 Conv, 256\\ 3×3 DWconv, 256\\ 1×1 Conv, Linear, 128 \end{cases}$
+ 14×14×128 | Block 1×$\begin{cases} 1×1 Conv, 512\\ 3×3 DWconv, /2, 512\\ 1×1 Conv, Linear, 256 \end{cases}$
+ 7×7×256 | RBlock 6×$\begin{cases} 1×1 Conv, 512\\ 3×3 DWconv, 512\\ 1×1 Conv, Linear, 256 \end{cases}$
+ 7×7×256 | 1×1 Conv, 512
+ 7×7×512 | 512-d FC
+
+其中，Block即Bottleneck block，RBlock即Residual Bottleneck block，在每个convolution层之后都会使用BN层和非线性激活PReLU，线性convolution层除外。最后一层，使用全连接层取代其他文献经常使用的全局平均池化，因为全连接层公平的对特征图的每个单元进行加权处理。
+
+实验结果
+使用干净的MS-Celeb-1M作为训练集，85K个ID，3.8M张图片，使用LFW和Megaface作为测试集。
+
+MS-Celeb-1M数据集清理的方法：计算每个ID的center feature，使用到ID center的距离来对他们的人脸图片进行排序，远离center的自动被删除，同时配合人工检测。
+
+LFW的标注人脸：5749个ID，13233张图片，使用测试工具处理后包括6000对人脸，其中有一半是正样本对。
+
+MegaFace：包括两个主要的数据集，gallery中包括690K个ID，超过1M的图片，probe中有两个子集，probe子集包括530个ID的100K张图片，FGNET子集包括0-69岁的82个ID的1002张图片。
+
+实现细节
+人脸检测以及五个关键点的检测都使用MTCNN，对齐后图片尺寸为112×112×3，归一化为[-1,1]。batch size设为1024，使用随机梯度下降（SGD）优化，momentum设为0.9，初始学习率为0.1，在40K，60K，80K迭代时按10倍的倍率下降，训练在100K迭代时截止。
+
+
