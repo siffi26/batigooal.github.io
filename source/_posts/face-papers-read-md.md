@@ -10,13 +10,17 @@ LFW、YTF、MegaFace测试基准
 
 Models | LFW | YTF | MegaFace | Model Size | Training Images
 ---------|----------|----------|----------|----------|----------
+PRN+ | 99.76% | 96.3% | / | / | 2.8M
 MobiFace | 99.7% | / | 91.3% | 9.3MB | 3.8M
 MobileFaceNet | 99.48% | / | 90.71% | 4MB | 3.8M
-Google-FaceNet | 99.63% | / | 86.47% | 30MB | 200M
+Google-FaceNet | 99.63% | 95.1% | 86.47% | 30MB | 200M
 MobileNet_V1 | 99.5% | / | 92.65% | 112MB | 3.8M
 CosFace | 99.73% | / | / | / | 5M
+ArcFace | 99.78% | / | / | / | 3.1M
 LightCNN | 99.33% | / | / | 50MB | 4M
-
+CenterFace | 99.28% | 94.9% | / | / | 0.7M
+SphereFace | 99.42% | 95% | / | / | 0.49M
+NAN | / | 95.7% | / | / | 3M
 ---
 
 
@@ -141,7 +145,35 @@ Layer name | Output size | 101-layer
 global appearance representation（全局外观表达）:GAP全局平均池化输出的2048维向量
 local appearance representation（局部外观表达）:在conv5_3层的特征图9×9×2048上根据人脸关键点进行ROI投影
 
-**人脸对齐**：
+**人脸对齐**，步骤如下：
+
+1. 使用multi-stage neural network检测68个人脸关键点（Deep Alignment Network）
+2. 在图像平面上旋转人脸，使得两眼的位置呈水平
+3. 根据最左和最右的距离，找到人脸图像的水平中轴
+4. 通过平均所有眼睛和嘴巴的关键点的方式来找到眼睛和嘴巴的中心点
+5. 基于中心点位置，确定x方向上人脸的中心
+6. 在y方向上，保证眼睛中心点以上的部分占30%，嘴巴中心点以下的部分占35%，从而能够确定y方向上的中心位置
+7. resize图片到140×140，每个像素归一化到[0,1]范围
+
+**Pairwise Relational Network**
+
+PRN的输入是特征图上一系列局部外观patches，输出单个特征向量作为人脸识别任务的相关特征。PRN的目的在于从成对的人脸图像局部外观patches中确定成对-关系结构。局部外观patches的排列顺序对于PRN来说至关重要，需要统一不变。
+
+为了得到同一个ID中独一无二的pairwise-relations，不同ID间有判别性的pairwise-relations，一个pairwise-relation应该是与ID无关的。为了调整ID信息，本文将face identiy state feature嵌入到PRN作为ID信息使用。face identiy state feature是通过使用一个LSTM+两个FC层组成的递归神经网络的最终状态而得到，使用softmax来训练这个网络的参数。
+
+**损失函数**
+学习PRN的时候，联合采用triplet ratio loss, pairwise loss, identity preserving loss三种损失值，最小化相同ID人脸之间的距离并且最大化不同ID人脸之间的距离。
+
+1. Triplet Ratio Loss: 最大化人脸三角样本中正样对和负样对之间距离的比率
+2. Pairwise Loss: 最小化Anchor人脸特征和正样人脸特征之间欧式距离的平方。
+
+**实验细节**
+
++ 训练数据：VGGFace2，人脸检测使用IR_FaceDetector，关键点检测使用DAN检测的68个点。经过处理，留下了8630个ID的3.1M张图片，对于每个ID随机抽取10%作为验证集。
++ PRN的细节设置：局部外观patches一共68个，每个局部特征是1×1×2048，68个patches组成了2278个可能的pairs。使用两个MLP，都是三层，每层1000个单元，带BN，使用ReLU非线性激活。mini-batch使用128，在训练PRN期间，固定主干网络的参数。
+
+
+
 
 
 ---
