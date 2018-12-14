@@ -10,6 +10,7 @@ LFW、YTF、MegaFace测试基准
 
 Models | LFW | YTF | MegaFace | Model Size | Training Images
 ---------|----------|----------|----------|----------|----------
+Contrastive CNN | 99.12% | / | / | / | WebFace
 PRN+ | 99.76% | 96.3% | / | / | 2.8M
 MobiFace | 99.7% | / | 91.3% | 9.3MB | 3.8M
 MobileFaceNet | 99.48% | / | 90.71% | 4MB | 3.8M
@@ -110,12 +111,48 @@ Learning (2018.1)*
 #### **Contrastive CNN**: *Face Recognition with Contrastive Convolution*
 + paper: [Contrastive CNN](http://openaccess.thecvf.com/content_ECCV_2018/papers/Chunrui_Han_Face_Recognition_with_ECCV_2018_paper.pdf)
 
+文章认为对于人在区分两个照片是不是同一人时，通常会关注于人脸的不同特点。受此启发，提出了一种新的CNN结构，叫做对比卷积，主要关注于做比较的两个人脸之间具有判别性的特点，也就是具有比较性的特点。
 
+文章所提出的自适应卷积和以往工作有两个方面是不同的，一是所聚焦的东西不一样，文章提出的动态生成核关注于两张图片之间的不同，第二个是核生成机制也不同，本文提出的contrastive kernels是根据一对图片来生成的，他得到的是一个图像相对于另一个图像来说具体的特征。
+
+**Contrastive CNN**
+
+contrastive features主要描述两张脸之间具有区分度的特性，这个特性是通过本文所提出的contrastive convolution所提取的。
+
+网络结构上主干CNN是两个输入图片共享，核生成器G产生一张人脸图片的个性化核，这个个性化核旨在强调一张脸想对于平均脸而言的那些显著特征。contrastive kernels被设计为两张脸的个性化核之间的不同，目的在于聚焦他们之间那些contrastive characteristics。使用contrastive kernels计算卷积，两张脸的congtrastive features被分别提取出来用于相似度计算。
+
+Kernel generator
+
+kernel generator旨在生成对应A或B的核，被认为个性化核。kernel generator将特征图作为输入，输出一系列个性化的核。
+
+Contrastive Convolution
+
+对比卷积中所使用的核是根据测试过程中不同对的图片在比较的过程中自动生成的。
+
+Overall Objective
+经过contrastive convolution之后，来自同一个ID的两张图片之间的相似度应该趋向于1，来自不同ID的两张图片应该趋向于0，因此这里使用交叉熵损失函数。
+
+此外，相同ID人脸图片的个性化核应该有高的相似度，即使是不同的姿态，光照或表情，所以也可以用交叉熵损失函数来表示。
+
+**实验细节**
+数据集：CASIA-WebFace训练，LFW和IJB-A用于测试。人脸检测和关键点检测都采用SeetaFace，预处理后的对齐图片都resize到128×128的尺寸用于训练和测试。
+
+文章设计了三种大小不同的网络，分别是4、10、16layers的，网络结构如下所示：
+
+![](cut-imgs/2018-12-14-17-58-14.png)
+
+contrastive CNN有三个sub-generator，分别生成9,4,1个contrastive kernels
+
+从实验结果来看，contrastive CNN在TAR(%)@FAR指标上表现的会明显更好
+
+---
 #### **GhostVLAD**: *GhostVLAD for set-based face recognition (2018.11, DeepMind)*
 + paper: [GhostVLAD](https://arxiv.org/pdf/1810.09951.pdf)
 
 #### *Data-specific Adaptive Threshold for Face Recognition and Authentication (2018.11)*
 + paper: [Adaptive Threshold](https://arxiv.org/pdf/1810.11160.pdf)
+
+文章围绕如何确定实际使用模型时的最佳阈值展开研究，提出一种自适应阈值的方法提升识别精确度，
 
 ---
 #### **PRN**: *Pairwise Relational Networks for Face Recognition (ECCV 2018)*
@@ -171,10 +208,6 @@ PRN的输入是特征图上一系列局部外观patches，输出单个特征向�
 
 + 训练数据：VGGFace2，人脸检测使用IR_FaceDetector，关键点检测使用DAN检测的68个点。经过处理，留下了8630个ID的3.1M张图片，对于每个ID随机抽取10%作为验证集。
 + PRN的细节设置：局部外观patches一共68个，每个局部特征是1×1×2048，68个patches组成了2278个可能的pairs。使用两个MLP，都是三层，每层1000个单元，带BN，使用ReLU非线性激活。mini-batch使用128，在训练PRN期间，固定主干网络的参数。
-
-
-
-
 
 ---
 #### **MobiFace**: *A Lightweight Deep Learning Face Recognition on Mobile Devices (2018.11)*
