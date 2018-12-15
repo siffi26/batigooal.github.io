@@ -10,6 +10,9 @@ LFW、YTF、MegaFace测试基准
 
 Models | LFW | YTF | MegaFace | Model Size | Training Images
 ---------|----------|----------|----------|----------|----------
+MML | 99.63% | 95.5% | / | / | 3M
+Git Loss | 99.3% | 95.3% | / | / | 3M
+GridFace-8 | 99.7% | 95.6% | / | / | /
 Contrastive CNN | 99.12% | / | / | / | WebFace
 PRN+ | 99.76% | 96.3% | / | / | 2.8M
 MobiFace | 99.7% | / | 91.3% | 9.3MB | 3.8M
@@ -98,16 +101,87 @@ Learning (2018.1)*
 + paper: [MobileFaceNets](https://arxiv.org/pdf/1804.07573v4.pdf)
 + codes: [MobileFaceNets](https://github.com/moli232777144/mobilefacenet-mxnet)
 
-#### *Minimum Margin Loss for Deep Face Recognition*
+#### *Minimum Margin Loss for Deep Face Recognition (2018.5)*
 + paper: [Minimum Margin Loss](https://arxiv.org/pdf/1805.06741.pdf)
 
+
+
+--- 
 #### **Git Loss**: *Git Loss for Deep Face Recognition (2018.7)*
 + paper: [Git Loss](https://arxiv.org/pdf/1807.08512.pdf)
 + codes: [Git Loss](https://github.com/kjanjua26/Git-Loss-For-Deep-Face-Recognition)
 
+本文引入了一个联合监督信号，Git Loss，利用了softmax和center loss函数。该Loss的目的在于最小化类内多样性，最大化类间距离。文章的主要贡献包括：
+
+1. 利用softmax和center loss提出了一种新的loss function，为深度架构提供隔离的能力，增强了深度特征的区分性，从而提升了人脸识别任务的性能。
+2. 使用标准的CNN架构实现了所提出的loss function，端到端可训练，使用SGD直接优化。
+3. 进行了充分的对比实验。
+
+**Git Loss**
+
+在center loss的基础上增加了一个新的函数，用于最大化不同类的特征向量之间的距离，同时保证同一类的特征向量之间的距离。Git Loss的公式如下
+
+$$L = L_S+\lambda_CL_C+\lambda_GLG=-\sum^{m}_{i=1}{log\frac{e^{W^T_{y_i}}x_i+b_{y_i}}{\sum^n_{j=1}{e^{W^T_jx_i+b_j}}}}+\frac{\lambda_C}{2}{\sum^n_{i=1}{||x_i-c_{y_i}||^2_2}}+\lambda_G{\sum^m_{i,j=1,i=\not j}{\frac{1}{1+||x_i-c_{y_j}||^2_2}}}$$
+
+其中，$L_G$表示最大化不同ID之间的距离，$\lambda_G=0$的时候就是center loss。
+
+**实验细节**
+
+训练数据：VGGFace2，使用水平翻转和随机剪切对数据集进行了增强处理，MTCNN用于人脸检测与对齐，最后resize到160×160的尺寸，移除了LFW和YTF中重复的ID。
+
+网络结构：Inception ResNet-V1，batch=90。
+
+---
 #### **GridFace**: * Face Rectification via Learning Local Homography Transformations (Face++, Megvii Inc)*
 + paper: [GridFace](https://arxiv.org/pdf/1808.06210v1.pdf)
 
+文章提出一种叫做GridFace的方法，可以减少人脸几何多样性，提高识别性能。通过local homography transformations矫正人脸，一个人脸矫正网络用于评估矫正效果。在图像生成过程中使用自然人脸分布来做正则化。该方法可以用端到端的方式学习矫正网络和识别网络。
+
+算法主要包括两个模块：
++ 矫正模块：用于评估矫正输入人脸图片啊的local homography transformations的效果。
++ 识别模块：矫正后的图片作为输入，通过度量学习来训练具有判别性的表示
+
+文章主要贡献包括：
+
+1. 使用local homography transformations减少人脸几何多样性，从而提升人脸识别性能
+2. 引入普通人脸的先验知识和一个基于近似方法的去噪自编码器对人脸矫正过程进行正则化处理，可以提升矫正的质量
+3. 在约束和非约束场景下的充分实验显示了方法的强大效果
+
+**GridFace方法的细节介绍**
+
+系统总体框图如下：
+
+![](cut-imgs/2018-12-15-11-30-39.png)
+
+上图中，矫正网络$f_\theta$将原始人脸图片映射到矫正后的图片，使用nonrigid image warping（非刚性图像变形）；识别网络$g_\phi$使用度量学习的方式学习矫正后人脸图片的特征表达。另外，系统引入了一个正则化用来加强普通视角下的矫正人脸，正则化网络$h_\omega$是使用普通视角下自然人脸的分布先验来建模的。
+
+1. 人脸矫正网络 如下图所示
+
+![](cut-imgs/2018-12-15-11-43-25.png)
+
+rectification网络的输入是原始图片，输出是一个残差矩阵，rectified之后的图片是由单位矩阵加上残差矩阵而得。rectification网络训练的损失函数是按照文章提出的soft constraint计算的。
+
+2. regularization by denoising autoencoder
+
+定义了一个图像先验，来自常见视角下自然人脸的分布
+
+3. 人脸识别网络
+
+使用triplet loss训练识别网络，去噪自编码和人脸识别网络的结构如下表所示：
+
+![](cut-imgs/2018-12-15-15-02-23.png)
+
+综上，整个系统的目标函数包括人脸识别loss，正则化loss以及可变形loss三个之和。
+
+**实验中的细节**
+
+数据集采用Social Network Face Dataset，200K个ID，10M张图片，选择2K个ID作为验证集，2K个ID作为测试集，其他作为训练集。采用5点的关键点检测。识别网络使用googlenet，rectification网络采用修改后的inception模块，去噪自编码器采用卷积自编码结构。
+
+原始图片和矫正后的图片都是128×128，去噪自编码器使用SNFace的子集训练，训练好后开始端到端的系统训练，mini-batch包括1024组图片三元组。
+
+在rectification阶段，设置Grid为8×8网格的时候对比来看测试结果最好，尤其是FAR越小时，提升越大。
+
+---
 #### **Contrastive CNN**: *Face Recognition with Contrastive Convolution*
 + paper: [Contrastive CNN](http://openaccess.thecvf.com/content_ECCV_2018/papers/Chunrui_Han_Face_Recognition_with_ECCV_2018_paper.pdf)
 
